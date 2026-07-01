@@ -1,0 +1,24 @@
+{
+  "name": "district-seoul",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "ecommerce",
+    "clothings",
+    "street wears",
+    "skateboard",
+    "fashion"
+  ],
+  "author": "saisaynoomleng",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.5.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module"
+}
