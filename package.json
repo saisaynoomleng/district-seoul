@@ -1,9 +1,17 @@
 {
   "name": "district-seoul",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "District Seoul is an ecommerce web app that sells street fashion and skateboards around US and Korea",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "format": "prettier --write .",
+    "clean": "turbo clean",
+    "test": "pnpm --color -r run vitest"
+  },
   "keywords": [
     "ecommerce",
     "clothings",
@@ -13,12 +21,15 @@
   ],
   "author": "saisaynoomleng",
   "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.5.0",
-      "onFail": "download"
-    }
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=11.0.0"
   },
-  "type": "module"
+  "packageManager": "pnpm@11.9.0",
+  "devDependencies": {
+    "@manypkg/cli": "^0.25.1",
+    "syncpack": "^15.3.2",
+    "turbo": "^2.10.2"
+  }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "@district-seoul/db",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx --watch --watch-preserve-output ./src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.22.0"
+  }
+}
