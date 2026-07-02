@@ -29,8 +29,8 @@ export const blockContent = defineType({
   ],
 })
 
-export const socailLink = defineType({
-  name: 'socailLink',
+export const socialLink = defineType({
+  name: 'socialLink',
   type: 'object',
   fields: [
     defineField({
