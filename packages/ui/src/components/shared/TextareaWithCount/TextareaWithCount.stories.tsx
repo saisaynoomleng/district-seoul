@@ -16,7 +16,22 @@ const meta: Meta<typeof TextareaWithCount> = {
   },
 
   args: {},
-  argTypes: {},
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Additional TailwindCSS classes',
+    },
+
+    id: {
+      control: 'text',
+      description: 'ID for the label to refer to',
+    },
+
+    maxLength: {
+      control: 'number',
+      description: 'Determine the maximum length of the input text',
+    },
+  },
 };
 
 export default meta;

@@ -13,7 +13,7 @@ import { MdTextFields } from 'react-icons/md';
 import { IoMdChatboxes, IoMdSettings } from 'react-icons/io';
 import { IoNewspaper, IoPencil, IoStorefront } from 'react-icons/io5';
 import { TbCategoryFilled } from 'react-icons/tb';
-import { RiCustomSize, RiPagesFill } from 'react-icons/ri';
+import { RiCustomSize, RiImageUploadFill, RiPagesFill } from 'react-icons/ri';
 import { FaUsersCog } from 'react-icons/fa';
 import { GiSkateboard, GiStairsGoal } from 'react-icons/gi';
 import { SiNike } from 'react-icons/si';
@@ -39,6 +39,7 @@ const Icons = [
   <VscCollection />,
   <PiFlagBannerFoldFill />,
   <GrWorkshop />,
+  <RiImageUploadFill />,
 ];
 
 const HEADING = [
