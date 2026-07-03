@@ -18,7 +18,7 @@ const mockAction = fn(
 );
 
 const meta: Meta<typeof NewsletterForm> = {
-  title: 'Features/NewsletterForm',
+  title: 'Features/Web/NewsletterForm',
   component: NewsletterForm,
   tags: ['autodocs'],
   parameters: {
@@ -35,7 +35,7 @@ const meta: Meta<typeof NewsletterForm> = {
   argTypes: {
     action: {
       control: false,
-      description: 'To render server action on Next.js',
+      description: 'Server Action to render in Next.js',
     },
 
     className: {

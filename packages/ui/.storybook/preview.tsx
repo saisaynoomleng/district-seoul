@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import '../src/styles/globals.css';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { Toaster } from '../src/components/ui/sonner';
 
 const preview: Preview = {
   parameters: {
@@ -26,6 +27,14 @@ const preview: Preview = {
       },
       defaultTheme: 'light',
     }),
+    (Story) => {
+      return (
+        <>
+          <Story />
+          <Toaster richColors closeButton position="bottom-center" />
+        </>
+      );
+    },
   ],
 };
 
