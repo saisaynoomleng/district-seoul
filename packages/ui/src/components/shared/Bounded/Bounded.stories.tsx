@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Bounded } from './Bounded';
 import { expect } from 'storybook/test';
+import { YouTubeEmbedded } from '../YouTubeEmbedded';
+import { youtubeId } from '#lib/mockData';
 
 const meta: Meta<typeof Bounded> = {
   title: 'Components/Shared/Bounded',
@@ -114,4 +116,12 @@ export const Default: Story = {
     await expect(heading).toHaveTextContent('Heading');
     await expect(p).toHaveLength(3);
   },
+};
+
+export const Video: Story = {
+  render: (args) => (
+    <Bounded {...args}>
+      <YouTubeEmbedded videoId={youtubeId} title="skate boarding" />
+    </Bounded>
+  ),
 };
