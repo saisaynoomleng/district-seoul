@@ -10,12 +10,14 @@ import {
 } from '@district-seoul/utils';
 import { Input } from '#components/ui/input';
 import {
+  Bounded,
   FormErrorMessage,
   FormLabel,
   SubmitButton,
 } from '../../components/shared';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
+import { toast } from 'sonner';
 
 type NewsletterFormProps = {
   className?: string;
@@ -48,10 +50,14 @@ export const NewsletterForm = ({
         message: result.message,
       });
     }
+
+    toast.success(result.message);
   };
 
   return (
-    <form
+    <Bounded
+      as="form"
+      size="full"
       className={twMerge(clsx('space-y-2', className))}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -64,12 +70,7 @@ export const NewsletterForm = ({
             autoComplete="email"
             aria-describedby="email-help"
             {...register('email')}
-            className={twMerge(
-              clsx(
-                errors.email &&
-                  'border-brand-error-500 focus-visible:ring-brand-error-500',
-              ),
-            )}
+            className={twMerge(clsx(errors.email && 'inputError'))}
           />
           {errors.email && (
             <FormErrorMessage>{errors.email.message}</FormErrorMessage>
@@ -77,6 +78,6 @@ export const NewsletterForm = ({
         </div>
         <SubmitButton>Subscribe</SubmitButton>
       </div>
-    </form>
+    </Bounded>
   );
 };
