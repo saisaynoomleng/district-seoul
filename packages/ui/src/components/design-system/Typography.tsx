@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bounded } from '../shared';
+import { Bounded, SectionTitle } from '../shared';
 import {
   Table,
   TableBody,
@@ -20,6 +20,7 @@ import { SiNike } from 'react-icons/si';
 import { VscCollection } from 'react-icons/vsc';
 import { PiFlagBannerFoldFill } from 'react-icons/pi';
 import { GrWorkshop } from 'react-icons/gr';
+import { Separator } from '../ui';
 
 const Icons = [
   <MdTextFields />,
@@ -40,37 +41,55 @@ const Icons = [
   <GrWorkshop />,
 ];
 
-const HIERARCHY = [
+const HEADING = [
   {
     name: 'Heading 1',
-    weight: 'semi bold',
+    weight: 'bold',
     size: '72px',
     lineHeight: '1',
   },
   {
     name: 'Heading 2',
-    weight: 'semi bold',
+    weight: 'bold',
+    size: '60px',
+    lineHeight: '1',
+  },
+];
+
+const HIERARCHY = [
+  {
+    name: 'Heading 1',
+    weight: 'bold',
+    size: '72px',
+    lineHeight: '1',
+  },
+  {
+    name: 'Heading 2',
+    weight: 'bold',
     size: '60px',
     lineHeight: '1',
   },
   {
-    name: 'Heading 3',
-    weight: 'semi bold',
-    size: '48px',
-    lineHeight: '1',
+    name: 'Body 1',
+    weight: 'regular',
+    size: '16px',
+    lineHeight: '1.5',
   },
   {
-    name: 'Heading 4',
-    weight: 'semi bold',
-    size: '36px',
-    lineHeight: '1',
+    name: 'Body 2',
+    weight: 'regular',
+    size: '14px',
+    lineHeight: '1.5',
   },
   {
-    name: 'Heading 5',
-    weight: 'semi bold',
-    size: '24px',
-    lineHeight: '1',
+    name: 'Body 3',
+    weight: 'regular',
+    size: '8px',
+    lineHeight: '1.5',
   },
+];
+
+const BODY = [
   {
     name: 'Body 1',
     weight: 'regular',
@@ -95,15 +114,11 @@ const Headers = [...new Set(HIERARCHY.flatMap((h) => Object.keys(h)))];
 
 export const Typography = (): React.JSX.Element => {
   return (
-    <Bounded className="space-y-6">
-      <span>
-        <MdTextFields size={70} />
-      </span>
-
+    <Bounded className="space-y-12">
       <div className="grid grid-cols-2">
         <div className="flex flex-col gap-y-3">
-          <h1 className="font-semibold text-fs-900">Typography</h1>
-          <p className="text-brand-black-600">
+          <SectionTitle className="font-bold" label1="typography" />
+          <p className="text-brand-black-600 dark:text-brand-black-500">
             Typography is part of the overall visual language you use to
             communicate with your users. Just like the visual elements of color,
             form and pattern, typography can set a mood, set a tone and present
@@ -112,30 +127,26 @@ export const Typography = (): React.JSX.Element => {
         </div>
 
         <div className="flex justify-center items-center">
-          <div className="brandBoxShadow border-4">
+          <div className="brandBoxShadow border-4 rounded-lg">
             <p className="text-fs-900 p-8 font-semibold">Aa</p>
           </div>
         </div>
       </div>
 
-      <h2 className="font-semibold text-fs-700">Typeface</h2>
+      <SectionTitle label1="Typeface" />
 
       <div className="grid grid-cols-2">
-        <div className="flex flex-col gap-y-1 font-heading">
+        <div className="flex flex-col gap-y-1 font-heading font-bold text-fs-500">
           <p className="text-brand-black-600">Title/Headings</p>
-          <p className="font-bold text-fs-500">Geo</p>
-          <p className="uppercase tracking-widest">
-            abcdefghijklmnopqrstuvwxyz
-          </p>
-          <p className="lowercase tracking-widest">
-            abcdefghijklmnopqrstuvwxyz
-          </p>
+          <p className="font-bold text-fs-700">Amantic SC</p>
+          <p className="tracking-widest">abcdefghijklmnopqrstuvwxyz</p>
+          <p className="tracking-widest">abcdefghijklmnopqrstuvwxyz</p>
           <p>1234567890</p>
         </div>
 
-        <div className="flex flex-col gap-y-1 font-body">
+        <div className="flex flex-col gap-y-1 font-body text-fs-500">
           <p className="text-brand-black-600">Body/Text</p>
-          <p className="font-bold text-fs-500">Abel</p>
+          <p className="font-bold text-fs-700">Josefin Sans</p>
           <p className="uppercase tracking-widest">
             abcdefghijklmnopqrstuvwxyz
           </p>
@@ -146,7 +157,9 @@ export const Typography = (): React.JSX.Element => {
         </div>
       </div>
 
-      <h2 className="font-semibold text-fs-700">Hierarchy</h2>
+      <Separator />
+
+      <SectionTitle label1="Hierarchy" />
 
       <Table>
         <TableHeader>
@@ -163,20 +176,35 @@ export const Typography = (): React.JSX.Element => {
         </TableHeader>
 
         <TableBody>
-          {HIERARCHY.map((h) => (
-            <TableRow key={h.name} className="capitalize">
+          {HEADING.map((h) => (
+            <TableRow key={h.name} className="font-heading">
               <TableCell style={{ fontSize: h.size }}>{h.name}</TableCell>
-              <TableCell>{h.weight}</TableCell>
-              <TableCell>{h.size}</TableCell>
-              <TableCell>{h.lineHeight}</TableCell>
+              <TableCell className="font-body uppercase">{h.weight}</TableCell>
+              <TableCell className="font-body uppercase">{h.size}</TableCell>
+              <TableCell className="font-body uppercase">
+                {h.lineHeight}
+              </TableCell>
+            </TableRow>
+          ))}
+
+          {BODY.map((b) => (
+            <TableRow key={b.name} className="font-body">
+              <TableCell style={{ fontSize: b.size }}>{b.name}</TableCell>
+              <TableCell className="font-body uppercase">{b.weight}</TableCell>
+              <TableCell className="font-body uppercase">{b.size}</TableCell>
+              <TableCell className="font-body uppercase">
+                {b.lineHeight}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
 
+      <Separator />
+
       <div className="space-y-4">
-        <h2 className="font-semibold text-fs-900">Icons</h2>
-        <div className="grid grid-cols-12 border-2 p-4 place-items-center gap-6">
+        <SectionTitle label1="Icons" />
+        <div className="grid grid-cols-12 border-2 p-4 place-items-center gap-6 rounded-lg">
           {Icons.map((icon) => (
             <i className="border border-brand-black-300 p-3">{icon}</i>
           ))}
