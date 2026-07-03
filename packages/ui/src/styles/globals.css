@@ -106,7 +106,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-brand-primary-100 text-brand-black-800 font-body overflow-x-hidden leading-normal tracking-normal;
+    @apply bg-brand-primary-100 text-brand-black-800 font-body overflow-x-hidden leading-normal tracking-normal dark:bg-brand-black-800 dark:text-brand-primary-100;
   }
   h1,
   h2,
