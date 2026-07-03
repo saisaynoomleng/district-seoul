@@ -177,7 +177,7 @@ export const Typography = (): React.JSX.Element => {
 
         <TableBody>
           {HEADING.map((h) => (
-            <TableRow key={h.name} className="font-heading">
+            <TableRow key={h.name} className="font-heading border-0">
               <TableCell style={{ fontSize: h.size }}>{h.name}</TableCell>
               <TableCell className="font-body uppercase">{h.weight}</TableCell>
               <TableCell className="font-body uppercase">{h.size}</TableCell>
@@ -188,7 +188,7 @@ export const Typography = (): React.JSX.Element => {
           ))}
 
           {BODY.map((b) => (
-            <TableRow key={b.name} className="font-body">
+            <TableRow key={b.name} className="font-body border-0">
               <TableCell style={{ fontSize: b.size }}>{b.name}</TableCell>
               <TableCell className="font-body uppercase">{b.weight}</TableCell>
               <TableCell className="font-body uppercase">{b.size}</TableCell>
