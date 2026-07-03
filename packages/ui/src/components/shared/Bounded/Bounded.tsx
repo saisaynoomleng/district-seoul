@@ -34,6 +34,7 @@ export const Bounded = <T extends ElementType>({
   isCentered = true,
   className,
   children,
+  ...props
 }: BoundedProps<T>): React.JSX.Element => {
   const Comp = as ?? 'section';
 
@@ -48,6 +49,7 @@ export const Bounded = <T extends ElementType>({
           className,
         ),
       )}
+      {...props}
     >
       {children}
     </Comp>
