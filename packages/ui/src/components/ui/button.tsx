@@ -17,6 +17,10 @@ const buttonVariants = cva(
           font-semibold
           bg-brand-success-300 border-2 border-brand-success-300 text-brand-black-800 after:absolute after:bg-brand-primary-100 after:rounded-t-full after:translate-y-full hover:after:translate-y-0 after:-z-10 after:transition-transform after:duration-800 after:-inset-1 hover:after:scale-[2] after:ease-in-out
         `,
+        submit: `group border border-brand-success-300 font-semibold dark:border-brand-black-600 rounded-sm isolate relative overflow-hidden text-brand-black-800 dark:text-brand-primary-100 hover:text-brand-black-800! transition-color duration:500
+        
+        after:absolute after:bg-brand-success-300 after:-inset-1 after:-translate-x-full hover:after:translate-x-0 after:-z-10 after:transition-transform after:duration-800 after:rounded-r-full hover:after:scale-[2]
+        `,
         outline:
           'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
         secondary:
