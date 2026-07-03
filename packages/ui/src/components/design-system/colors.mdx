@@ -1,0 +1,10 @@
+import { colors } from '#lib/colors';
+import { ColorPalette, Meta, ColorItem } from '@storybook/addon-docs/blocks';
+
+<Meta title="DesignSystem/Colors" />
+
+<ColorPalette>
+  {Object.entries(colors).map(([title, value]) => (
+    <ColorItem key={title} title={title.toUpperCase()} colors={value} />
+  ))}
+</ColorPalette>
