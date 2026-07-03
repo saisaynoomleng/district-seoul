@@ -10,7 +10,7 @@ import {
 } from '#components/ui/table';
 
 import { MdTextFields } from 'react-icons/md';
-import { IoMdChatboxes, IoMdSettings } from 'react-icons/io';
+import { IoIosPaperPlane, IoMdChatboxes, IoMdSettings } from 'react-icons/io';
 import { IoNewspaper, IoPencil, IoStorefront } from 'react-icons/io5';
 import { TbCategoryFilled } from 'react-icons/tb';
 import { RiCustomSize, RiImageUploadFill, RiPagesFill } from 'react-icons/ri';
@@ -40,6 +40,7 @@ const Icons = [
   <PiFlagBannerFoldFill />,
   <GrWorkshop />,
   <RiImageUploadFill />,
+  <IoIosPaperPlane />,
 ];
 
 const HEADING = [
