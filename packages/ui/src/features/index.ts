@@ -1,3 +1,3 @@
 export * from './NewsletterSubscription';
 export * from './ContactUsForm';
-export * from './CreateAuthorForm';
+export * from './AuthorForm';

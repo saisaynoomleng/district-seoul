@@ -1,55 +1,51 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CreateAuthorForm } from './CreateAuthorForm';
-import { expect, fn } from 'storybook/test';
-import { ActionResponse, CreateAuthorFormValues } from '@district-seoul/utils';
-import { mockImageFile } from '#lib/mockData';
+import { EditAuthorForm } from './EditAuthorForm';
+import {
+  mockAuthor,
+  mockFormAction,
+  mockImageFile,
+  mockImageUploadAction,
+} from '#lib/mockData';
+import { expect } from 'storybook/test';
 
-const mockAction = fn(
-  async (
-    data: CreateAuthorFormValues,
-  ): Promise<ActionResponse<CreateAuthorFormValues>> => {
-    return {
-      success: true,
-      message: 'Author created!',
-    };
-  },
-);
-
-const mockImageUpload = fn(async () => {
-  return 'Test Image Id';
-});
-
-const meta: Meta<typeof CreateAuthorForm> = {
-  title: 'Features/Admin/CreateAuthorForm',
-  component: CreateAuthorForm,
+const meta: Meta<typeof EditAuthorForm> = {
+  title: 'Features/Admin/EditAuthorForm',
+  component: EditAuthorForm,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Admin Dashboard: Create Author Form',
+        component: 'Admin Dashboard: Edit Author Form',
       },
     },
   },
 
   args: {
-    action: mockAction,
-    imageUploadAction: mockImageUpload,
+    author: mockAuthor,
+    action: mockFormAction,
+    imageUploadAction: mockImageUploadAction,
   },
-  argTypes: {
-    action: {
-      control: false,
-      description: 'Server Action to render in Next.js',
-    },
 
-    imageUploadAction: {
+  argTypes: {
+    author: {
       control: false,
-      description: 'Server Action to render in Next.js',
+      description: "Initial Author's Info",
     },
 
     className: {
       control: 'text',
       description: 'Additional TailwindCSS classes',
+    },
+
+    action: {
+      control: false,
+      description: 'Server Action to be render in Next.js',
+    },
+
+    imageUploadAction: {
+      control: false,
+      description: 'Server Action to be render in Next.js',
     },
   },
 };
@@ -60,7 +56,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const FilledForm: Story = {
-  render: (args) => <CreateAuthorForm {...args} />,
+  render: (args) => <EditAuthorForm {...args} />,
   play: async ({ canvas, userEvent }) => {
     const name = canvas.getByLabelText(/author name/i);
     const generateSlug = canvas.getByRole('button', {
@@ -76,7 +72,7 @@ export const FilledForm: Story = {
     const imageAssetId = canvas.getByLabelText(/upload author image/i);
     const imageAlt = canvas.getByLabelText(/image alt text/i);
     const submit = canvas.getByRole('button', {
-      name: /create/i,
+      name: /edit/i,
     });
 
     await expect(name).toBeInTheDocument();
@@ -90,25 +86,33 @@ export const FilledForm: Story = {
     await expect(imageAlt).toBeInTheDocument();
     await expect(submit).toBeInTheDocument();
 
-    await userEvent.type(name, 'John Doe');
+    await userEvent.clear(name);
+    await userEvent.clear(slug);
+    await userEvent.clear(bioEn);
+    await userEvent.clear(bioKo);
+    await userEvent.clear(specializedIn);
+    await userEvent.clear(socialLink);
+    await userEvent.clear(imageAlt);
+
+    await userEvent.type(name, 'Joe Doe');
     await userEvent.click(generateSlug);
-    await userEvent.type(bioEn, 'Bio in english');
-    await userEvent.type(bioKo, 'Bio in korean');
-    await userEvent.type(specializedIn, 'Fashion');
-    await userEvent.type(socialLink, 'https://www.facebook.com');
+    await userEvent.type(bioEn, 'Bio in english for Joe Doe');
+    await userEvent.type(bioKo, 'Bio in korean for Joe Doe');
+    await userEvent.type(specializedIn, 'Fashion Joe Doe');
+    await userEvent.type(socialLink, 'https://www.facebook.com/joe-doe');
     await userEvent.upload(imageAssetId, mockImageFile);
     await userEvent.type(imageAlt, 'image alt text');
 
     await userEvent.click(submit);
 
-    await expect(mockAction).toHaveBeenCalledWith({
-      name: 'John Doe',
-      slug: 'john-doe-author',
-      bioEn: 'Bio in english',
-      bioKo: 'Bio in korean',
-      specializedIn: 'Fashion',
-      socialLink: 'https://www.facebook.com',
-      imageAssetId: 'Test Image Id',
+    await expect(mockFormAction).toHaveBeenCalledWith({
+      name: 'Joe Doe',
+      slug: 'joe-doe-author',
+      bioEn: 'Bio in english for Joe Doe',
+      bioKo: 'Bio in korean for Joe Doe',
+      specializedIn: 'Fashion Joe Doe',
+      socialLink: 'https://www.facebook.com/joe-doe',
+      imageAssetId: 'image file',
       imageAlt: 'image alt text',
     });
   },
