@@ -34,3 +34,12 @@ export const mockAuthor = {
   socialLink: 'https://www.facebook.com',
   specializedIn: 'Fashion',
 };
+
+export const mockMilestone = {
+  bodyEn: 'Description in english',
+  bodyKo: 'Description in korean',
+  nameEn: 'Hey English',
+  nameKo: 'Hey Korean',
+  slug: 'hey-english',
+  year: 2025,
+};
