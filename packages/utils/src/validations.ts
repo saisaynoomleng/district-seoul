@@ -52,3 +52,19 @@ export const AuthorFormSchema = z.object({
  * Validate Create & Edit Author Form Values
  */
 export type AuthorFormValues = z.input<typeof AuthorFormSchema>;
+
+/**
+ * Validate Milestone Form Schema
+ */
+export const MilestoneFormSchema = z.object({
+  nameEn: z.string(),
+  nameKo: z.string(),
+  slug: z.string(),
+  year: z.coerce.number(),
+  bodyEn: z.string(),
+  bodyKo: z.string(),
+});
+/**
+ * Validate Milestone Form Values
+ */
+export type MilestoneFormValues = z.input<typeof MilestoneFormSchema>;
