@@ -49,6 +49,7 @@ export const NewsletterForm = ({
       setError(result.field as keyof NewsletterFormSchemaValues, {
         message: result.message,
       });
+      return;
     }
 
     toast.success(result.message);
@@ -68,12 +69,14 @@ export const NewsletterForm = ({
             type="email"
             id="email"
             autoComplete="email"
-            aria-describedby="email-help"
+            aria-describedby="email-error"
             {...register('email')}
             className={twMerge(clsx(errors.email && 'inputError'))}
           />
           {errors.email && (
-            <FormErrorMessage>{errors.email.message}</FormErrorMessage>
+            <FormErrorMessage id="email-error">
+              {errors.email.message}
+            </FormErrorMessage>
           )}
         </div>
         <SubmitButton>Subscribe</SubmitButton>

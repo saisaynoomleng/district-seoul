@@ -12,7 +12,7 @@ const mockAction = fn(
   ): Promise<ActionResponse<NewsletterFormSchemaValues>> => {
     return {
       success: true,
-      message: 'success',
+      message: 'subscribed!',
     };
   },
 );

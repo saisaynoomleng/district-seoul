@@ -10,6 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: `
+          rounded-sm
           relative
           isolate
           overflow-hidden
