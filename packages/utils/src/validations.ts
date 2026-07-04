@@ -28,3 +28,21 @@ export const ContactUsFormSchema = z.object({
  * Validate Contact Us Form Values
  */
 export type ContactUsFormSchemaValues = z.input<typeof ContactUsFormSchema>;
+
+/**
+ * Validate Create Author Form Schema
+ */
+export const CreateAuthorFormSchema = z.object({
+  name: z.string().min(1, 'Author name must have at least 1 character'),
+  slug: z.string(),
+  bioEn: z.string(),
+  bioKo: z.string(),
+  imageAssetId: z.string(),
+  imageAlt: z.string(),
+  socialLink: z.url().nullable(),
+  specializedIn: z.string(),
+});
+/**
+ * Validate Create Author Form Values
+ */
+export type CreateAuthorFormValues = z.input<typeof CreateAuthorFormSchema>;

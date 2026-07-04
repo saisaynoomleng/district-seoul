@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormErrorMessage } from './FormErrorMessage';
 import { expect } from 'storybook/test';
+import { LabelInfoText } from './LabelInfoText';
 
-const meta: Meta<typeof FormErrorMessage> = {
-  title: 'Components/Shared/FormErrorMessage',
-  component: FormErrorMessage,
+const meta: Meta<typeof LabelInfoText> = {
+  title: 'Components/Shared/LabelInfoText',
+  component: LabelInfoText,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     docs: {
       description: {
-        component: 'For displaying error messages under the input forms',
+        component: 'For displaying Helper Text under the Label forms',
       },
     },
   },
@@ -21,9 +21,9 @@ const meta: Meta<typeof FormErrorMessage> = {
       description: 'Additional TailwindCSS classes',
     },
 
-    children: {
-      control: false,
-      description: 'Render any React Node',
+    text: {
+      control: 'text',
+      description: 'Helper Text',
     },
 
     id: {
@@ -38,12 +38,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <FormErrorMessage {...args}>Must be a valid email address</FormErrorMessage>
+    <LabelInfoText {...args}>
+      Slug is required to generate a page on the website
+    </LabelInfoText>
   ),
   play: async ({ canvas }) => {
-    const p = canvas.getByRole('alert');
+    const p = canvas.getByText(
+      /slug is required to generate a page on the website/i,
+    );
 
     await expect(p).toBeInTheDocument();
-    await expect(p).toHaveTextContent('Must be a valid email address');
+    await expect(p).toHaveTextContent(
+      'Slug is required to generate a page on the website',
+    );
   },
 };

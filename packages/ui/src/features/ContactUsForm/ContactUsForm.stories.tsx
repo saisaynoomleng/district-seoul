@@ -12,7 +12,7 @@ const mockAction = fn(
   ): Promise<ActionResponse<ContactUsFormSchemaValues>> => {
     return {
       success: true,
-      message: 'success!',
+      message: 'contact success!',
     };
   },
 );

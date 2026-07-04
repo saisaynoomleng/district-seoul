@@ -48,3 +48,17 @@ export const formatUSCurrency = (currency: number): string => {
     currency: 'usd',
   }).format(currency);
 };
+
+/**
+ * Generate Sanity Slug for any string input
+ * @param input string;
+ * @returns string;
+ */
+export const sanitySlugifier = (input: string): string => {
+  return input
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 200);
+};

@@ -55,6 +55,7 @@ export const ContactUsForm = ({
       setError(result.field as keyof ContactUsFormSchemaValues, {
         message: result.message,
       });
+      return;
     }
 
     toast.success(result.message);
@@ -74,6 +75,7 @@ export const ContactUsForm = ({
         label1="Send your message here"
         className="col-span-full text-center"
         separated={false}
+        size="sm"
       />
 
       <div className="space-y-2">
@@ -82,12 +84,15 @@ export const ContactUsForm = ({
           type="text"
           id="fullname"
           autoComplete="name"
+          aria-describedby="fullname-error"
           placeholder="John Doe"
           className={twMerge(clsx(errors.fullName && 'inputError'))}
           {...register('fullName')}
         />
         {errors.fullName && (
-          <FormErrorMessage>{errors.fullName.message}</FormErrorMessage>
+          <FormErrorMessage id="fullname-error">
+            {errors.fullName.message}
+          </FormErrorMessage>
         )}
       </div>
 
@@ -97,12 +102,15 @@ export const ContactUsForm = ({
           type="email"
           id="email"
           autoComplete="email"
+          aria-describedby="email-error"
           placeholder="johndoe@mail.com"
           className={twMerge(clsx(errors.email && 'inputError'))}
           {...register('email')}
         />
         {errors.email && (
-          <FormErrorMessage>{errors.email.message}</FormErrorMessage>
+          <FormErrorMessage id="email-error">
+            {errors.email.message}
+          </FormErrorMessage>
         )}
       </div>
 
@@ -112,12 +120,15 @@ export const ContactUsForm = ({
           type="string"
           id="phone"
           autoComplete="mobile"
+          aria-describedby="phone-error"
           placeholder="+1 234 567 8901"
           className={twMerge(clsx(errors.phone && 'inputError'))}
           {...register('phone')}
         />
         {errors.phone && (
-          <FormErrorMessage>{errors.phone.message}</FormErrorMessage>
+          <FormErrorMessage id="phone-error">
+            {errors.phone.message}
+          </FormErrorMessage>
         )}
       </div>
 
@@ -126,11 +137,14 @@ export const ContactUsForm = ({
         <Input
           type="text"
           id="subject"
+          aria-describedby="subject-error"
           {...register('subject')}
           className={twMerge(clsx(errors.subject && 'inputError'))}
         />
         {errors.subject && (
-          <FormErrorMessage>{errors.subject.message}</FormErrorMessage>
+          <FormErrorMessage id="subject-error">
+            {errors.subject.message}
+          </FormErrorMessage>
         )}
       </div>
 
@@ -139,11 +153,14 @@ export const ContactUsForm = ({
         <TextareaWithCount
           id="message"
           maxLength={3000}
+          aria-describedby="message-error"
           {...register('message')}
           className={twMerge(clsx(errors.message && 'inputError'))}
         />
         {errors.message && (
-          <FormErrorMessage>{errors.message.message}</FormErrorMessage>
+          <FormErrorMessage id="message-error">
+            {errors.message.message}
+          </FormErrorMessage>
         )}
       </div>
 
