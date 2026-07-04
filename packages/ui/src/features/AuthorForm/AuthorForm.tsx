@@ -1,4 +1,12 @@
+import {
+  ALLOWED_IMAGE_TYPES,
+  AuthorFormValues,
+  MAXIMUM_IMAGE_SIZE,
+  sanitySlugifier,
+} from '@district-seoul/utils';
 import React from 'react';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { twMerge } from 'tailwind-merge';
 import {
   Bounded,
   Button,
@@ -11,65 +19,38 @@ import {
   SubmitButton,
   TextareaWithCount,
 } from '../../components';
-import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
-import {
-  ActionResponse,
-  CreateAuthorFormSchema,
-  CreateAuthorFormValues,
-  sanitySlugifier,
-} from '@district-seoul/utils';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
 
-type CreateAuthorFormProps = {
-  className?: string;
-  action: (
-    data: CreateAuthorFormValues,
-  ) => Promise<ActionResponse<CreateAuthorFormValues>>;
+type AuthorFormProps = {
+  form: UseFormReturn<AuthorFormValues>;
+  submitLabel: string;
+  onSubmit: SubmitHandler<AuthorFormValues>;
   imageUploadAction: (formData: FormData) => Promise<string>;
+  className?: string;
+  formTitle: string;
 };
 
-export const CreateAuthorForm = ({
-  className,
-  action,
+export const AuthorForm = ({
+  form,
+  submitLabel,
+  onSubmit,
   imageUploadAction,
-}: CreateAuthorFormProps): React.JSX.Element => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setValue,
-    setError,
-    getValues,
-  } = useForm<CreateAuthorFormValues>({
-    resolver: zodResolver(CreateAuthorFormSchema),
-    defaultValues: {
-      name: '',
-      slug: '',
-      bioEn: '',
-      bioKo: '',
-      imageAssetId: '',
-      imageAlt: '',
-      socialLink: '',
-      specializedIn: '',
-    },
-  });
-
+  className,
+  formTitle,
+}: AuthorFormProps): React.JSX.Element => {
   const generateSlug = () => {
-    const name = getValues('name');
+    const name = form.getValues('name');
 
     const slug = sanitySlugifier(name);
 
     if (!slug) {
-      setError('slug', {
+      form.setError('slug', {
         message: 'Invalid slug type! May be add Author name first?',
       });
       return;
     }
 
-    setValue('slug', `${slug}-author`, {
+    form.setValue('slug', `${slug}-author`, {
       shouldDirty: true,
       shouldTouch: true,
       shouldValidate: true,
@@ -78,31 +59,23 @@ export const CreateAuthorForm = ({
 
   const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    const ALLOWED_TYPES = [
-      'image/webp',
-      'image/jpg',
-      'image/jpeg',
-      'image/png',
-      'image/avif',
-    ];
-    const MAXIMUM_SIZE = 1 * 1024 * 1024;
 
     if (!file) {
-      setError('imageAssetId', {
+      form.setError('imageAssetId', {
         message: 'Image upload failed!',
       });
       return;
     }
 
-    if (file.size > MAXIMUM_SIZE) {
-      setError('imageAssetId', {
+    if (file.size > MAXIMUM_IMAGE_SIZE(1)) {
+      form.setError('imageAssetId', {
         message: 'Image size cannot exceed 1 MB',
       });
       return;
     }
 
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      setError('imageAssetId', {
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+      form.setError('imageAssetId', {
         message: 'Only accept image type',
       });
       return;
@@ -114,44 +87,26 @@ export const CreateAuthorForm = ({
     const assetId = await imageUploadAction(formData);
 
     if (!assetId) {
-      setError('imageAssetId', {
+      form.setError('imageAssetId', {
         message: 'Image upload failed!',
       });
       return;
     }
 
-    setValue('imageAssetId', assetId, {
+    form.setValue('imageAssetId', assetId, {
       shouldDirty: true,
       shouldValidate: true,
       shouldTouch: true,
     });
   };
 
-  const onSubmit: SubmitHandler<CreateAuthorFormValues> = async (data) => {
-    const result = await action(data);
-
-    if (!result.success) {
-      setError(result.field as keyof CreateAuthorFormValues, {
-        message: result.message,
-      });
-      return;
-    }
-
-    toast.success(result.message);
-  };
-
   return (
     <Bounded
       as="form"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit(onSubmit)}
       className={twMerge(clsx('flex flex-col gap-y-6', className))}
     >
-      <SectionTitle
-        as="h3"
-        size="sm"
-        separated={false}
-        label1="Create Author"
-      />
+      <SectionTitle as="h3" size="sm" separated={false} label1={formTitle} />
 
       <div className="space-y-2">
         <FormLabel htmlFor="name">Author Name</FormLabel>
@@ -159,12 +114,12 @@ export const CreateAuthorForm = ({
           type="text"
           id="name"
           aria-describedby="name-error"
-          {...register('name')}
-          className={twMerge(clsx(errors.name && 'inputError'))}
+          {...form.register('name')}
+          className={twMerge(clsx(form.formState.errors.name && 'inputError'))}
         />
-        {errors.name && (
+        {form.formState.errors.name && (
           <FormErrorMessage id="name-error">
-            {errors.name.message}
+            {form.formState.errors.name.message}
           </FormErrorMessage>
         )}
       </div>
@@ -181,14 +136,16 @@ export const CreateAuthorForm = ({
               type="text"
               id="slug"
               aria-describedby="slug-helper slug-error"
-              className={twMerge(clsx(errors.slug && 'inputError'))}
+              className={twMerge(
+                clsx(form.formState.errors.slug && 'inputError'),
+              )}
               required
               aria-required
-              {...register('slug')}
+              {...form.register('slug')}
             />
-            {errors.slug && (
+            {form.formState.errors.slug && (
               <FormErrorMessage id="slug-error">
-                {errors.slug.message}
+                {form.formState.errors.slug.message}
               </FormErrorMessage>
             )}
           </div>
@@ -208,12 +165,12 @@ export const CreateAuthorForm = ({
           id="bioEn"
           maxLength={10000}
           aria-describedby="bioEn-error"
-          {...register('bioEn')}
-          className={twMerge(clsx(errors.bioEn && 'inputError'))}
+          {...form.register('bioEn')}
+          className={twMerge(clsx(form.formState.errors.bioEn && 'inputError'))}
         />
-        {errors.bioEn && (
+        {form.formState.errors.bioEn && (
           <FormErrorMessage id="bioEn-error">
-            {errors.bioEn.message}
+            {form.formState.errors.bioEn.message}
           </FormErrorMessage>
         )}
       </div>
@@ -224,12 +181,12 @@ export const CreateAuthorForm = ({
           id="bioKo"
           maxLength={10000}
           aria-describedby="bioKo-error"
-          {...register('bioKo')}
-          className={twMerge(clsx(errors.bioKo && 'inputError'))}
+          {...form.register('bioKo')}
+          className={twMerge(clsx(form.formState.errors.bioKo && 'inputError'))}
         />
-        {errors.bioKo && (
+        {form.formState.errors.bioKo && (
           <FormErrorMessage id="bioKo-error">
-            {errors.bioKo.message}
+            {form.formState.errors.bioKo.message}
           </FormErrorMessage>
         )}
       </div>
@@ -240,12 +197,12 @@ export const CreateAuthorForm = ({
           type="text"
           id="specializedIn"
           aria-describedby="specialized-error"
-          {...register('specializedIn')}
-          className={errors.specializedIn && 'inputError'}
+          {...form.register('specializedIn')}
+          className={form.formState.errors.specializedIn && 'inputError'}
         />
-        {errors.specializedIn && (
+        {form.formState.errors.specializedIn && (
           <FormErrorMessage id="specialized-error">
-            {errors.specializedIn.message}
+            {form.formState.errors.specializedIn.message}
           </FormErrorMessage>
         )}
       </div>
@@ -256,12 +213,14 @@ export const CreateAuthorForm = ({
           type="url"
           id="socialLink"
           aria-describedby="social-error"
-          {...register('socialLink')}
-          className={twMerge(clsx(errors.socialLink && 'inputError'))}
+          {...form.register('socialLink')}
+          className={twMerge(
+            clsx(form.formState.errors.socialLink && 'inputError'),
+          )}
         />
-        {errors.socialLink && (
+        {form.formState.errors.socialLink && (
           <FormErrorMessage id="social-error">
-            {errors.socialLink.message}
+            {form.formState.errors.socialLink.message}
           </FormErrorMessage>
         )}
       </div>
@@ -272,11 +231,13 @@ export const CreateAuthorForm = ({
           id="imageAsset"
           onChange={handleImage}
           aria-describedby="assetId-error"
-          className={twMerge(clsx(errors.imageAssetId && 'inputError'))}
+          className={twMerge(
+            clsx(form.formState.errors.imageAssetId && 'inputError'),
+          )}
         />
-        {errors.imageAssetId && (
+        {form.formState.errors.imageAssetId && (
           <FormErrorMessage id="assetId-error">
-            {errors.imageAssetId.message}
+            {form.formState.errors.imageAssetId.message}
           </FormErrorMessage>
         )}
       </div>
@@ -290,20 +251,22 @@ export const CreateAuthorForm = ({
         <Input
           type="text"
           id="imageAlt"
-          className={twMerge(clsx(errors.imageAlt && 'inputError'))}
-          {...register('imageAlt')}
+          className={twMerge(
+            clsx(form.formState.errors.imageAlt && 'inputError'),
+          )}
+          {...form.register('imageAlt')}
           required
           aria-required
           aria-describedby="image-alt-helper image-alt-error"
         />
-        {errors.imageAlt && (
+        {form.formState.errors.imageAlt && (
           <FormErrorMessage id="image-alt-error">
-            {errors.imageAlt.message}
+            {form.formState.errors.imageAlt.message}
           </FormErrorMessage>
         )}
       </div>
 
-      <SubmitButton className="self-start">Create</SubmitButton>
+      <SubmitButton className="self-start">{submitLabel}</SubmitButton>
     </Bounded>
   );
 };

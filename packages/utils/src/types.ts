@@ -19,3 +19,14 @@ export type ActionResponse<Tvalues> = {
   message: string;
   field?: keyof Tvalues;
 };
+
+/**
+ * Allow image types for image handler
+ */
+export const ALLOWED_IMAGE_TYPES = [
+  'image/webp',
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/avif',
+];

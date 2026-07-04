@@ -62,3 +62,12 @@ export const sanitySlugifier = (input: string): string => {
     .replace(/-+/g, '-')
     .slice(0, 200);
 };
+
+/**
+ * Generate maximum image size in MB
+ * @param size number
+ * @returns size in MB
+ */
+export const MAXIMUM_IMAGE_SIZE = (size: number) => {
+  return size * 1024 * 1024;
+};

@@ -29,7 +29,7 @@ export const SubmitButton = ({
       {pending ? (
         <LoadingSpinner className="relative z-10" />
       ) : (
-        <span className="flex gap-x-2 items-center relative z-10">
+        <span className="flex gap-x-2 relative z-10">
           {children}{' '}
           <IoIosPaperPlane className="group-hover:rotate-45 duration-300 ease-in-out transition-transform" />
         </span>

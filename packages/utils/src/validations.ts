@@ -30,19 +30,25 @@ export const ContactUsFormSchema = z.object({
 export type ContactUsFormSchemaValues = z.input<typeof ContactUsFormSchema>;
 
 /**
- * Validate Create Author Form Schema
+ * Validate Create & Edit Author Form Schema
  */
-export const CreateAuthorFormSchema = z.object({
+export const AuthorFormSchema = z.object({
   name: z.string().min(1, 'Author name must have at least 1 character'),
   slug: z.string(),
-  bioEn: z.string(),
-  bioKo: z.string(),
+  bioEn: z
+    .string()
+    .min(1, 'Bio must have at least 1 character')
+    .max(10000, 'Bio cannot exceeds 10000 characters'),
+  bioKo: z
+    .string()
+    .min(1, 'Bio must have at least 1 character')
+    .max(10000, 'Bio cannot exceeds 10000 characters'),
   imageAssetId: z.string(),
   imageAlt: z.string(),
   socialLink: z.url().nullable(),
   specializedIn: z.string(),
 });
 /**
- * Validate Create Author Form Values
+ * Validate Create & Edit Author Form Values
  */
-export type CreateAuthorFormValues = z.input<typeof CreateAuthorFormSchema>;
+export type AuthorFormValues = z.input<typeof AuthorFormSchema>;

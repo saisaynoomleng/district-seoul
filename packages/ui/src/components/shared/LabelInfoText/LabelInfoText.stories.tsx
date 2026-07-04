@@ -10,7 +10,7 @@ const meta: Meta<typeof LabelInfoText> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'For displaying Helper Text under the Label forms',
+        component: 'For displaying helper text under form label',
       },
     },
   },
@@ -38,9 +38,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => (
-    <LabelInfoText {...args}>
-      Slug is required to generate a page on the website
-    </LabelInfoText>
+    <LabelInfoText
+      {...args}
+      text="Slug is required to generate a page on the website"
+    />
   ),
   play: async ({ canvas }) => {
     const p = canvas.getByText(
