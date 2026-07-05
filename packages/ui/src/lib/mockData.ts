@@ -43,3 +43,9 @@ export const mockMilestone = {
   slug: 'hey-english',
   year: 2025,
 };
+
+export const mockBlogCategory = {
+  nameEn: 'Fashion in English',
+  nameKo: 'Fashion in Korean',
+  slug: 'fashion-in-english',
+};

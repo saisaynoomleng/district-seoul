@@ -69,14 +69,11 @@ export const NewsletterForm = ({
             type="email"
             id="email"
             autoComplete="email"
-            aria-describedby="email-error"
             {...register('email')}
             className={twMerge(clsx(errors.email && 'inputError'))}
           />
           {errors.email && (
-            <FormErrorMessage id="email-error">
-              {errors.email.message}
-            </FormErrorMessage>
+            <FormErrorMessage>{errors.email.message}</FormErrorMessage>
           )}
         </div>
         <SubmitButton>Subscribe</SubmitButton>

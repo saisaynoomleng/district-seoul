@@ -113,12 +113,11 @@ export const AuthorForm = ({
         <Input
           type="text"
           id="name"
-          aria-describedby="name-error"
           {...form.register('name')}
           className={twMerge(clsx(form.formState.errors.name && 'inputError'))}
         />
         {form.formState.errors.name && (
-          <FormErrorMessage id="name-error">
+          <FormErrorMessage>
             {form.formState.errors.name.message}
           </FormErrorMessage>
         )}
@@ -126,16 +125,12 @@ export const AuthorForm = ({
 
       <div className="sapce-y-2">
         <FormLabel htmlFor="slug">Slug</FormLabel>
-        <LabelInfoText
-          id="slug-helper"
-          text="Slug is required to generate a page on the website"
-        />
+        <LabelInfoText text="Slug is required to generate a page on the website" />
         <div className="flex gap-x-2 items-start">
           <div className="flex flex-col gap-y-1 w-full">
             <Input
               type="text"
               id="slug"
-              aria-describedby="slug-helper slug-error"
               className={twMerge(
                 clsx(form.formState.errors.slug && 'inputError'),
               )}
@@ -144,7 +139,7 @@ export const AuthorForm = ({
               {...form.register('slug')}
             />
             {form.formState.errors.slug && (
-              <FormErrorMessage id="slug-error">
+              <FormErrorMessage>
                 {form.formState.errors.slug.message}
               </FormErrorMessage>
             )}
@@ -164,12 +159,11 @@ export const AuthorForm = ({
         <TextareaWithCount
           id="bioEn"
           maxLength={10000}
-          aria-describedby="bioEn-error"
           {...form.register('bioEn')}
           className={twMerge(clsx(form.formState.errors.bioEn && 'inputError'))}
         />
         {form.formState.errors.bioEn && (
-          <FormErrorMessage id="bioEn-error">
+          <FormErrorMessage>
             {form.formState.errors.bioEn.message}
           </FormErrorMessage>
         )}
@@ -180,12 +174,11 @@ export const AuthorForm = ({
         <TextareaWithCount
           id="bioKo"
           maxLength={10000}
-          aria-describedby="bioKo-error"
           {...form.register('bioKo')}
           className={twMerge(clsx(form.formState.errors.bioKo && 'inputError'))}
         />
         {form.formState.errors.bioKo && (
-          <FormErrorMessage id="bioKo-error">
+          <FormErrorMessage>
             {form.formState.errors.bioKo.message}
           </FormErrorMessage>
         )}
@@ -196,12 +189,11 @@ export const AuthorForm = ({
         <Input
           type="text"
           id="specializedIn"
-          aria-describedby="specialized-error"
           {...form.register('specializedIn')}
           className={form.formState.errors.specializedIn && 'inputError'}
         />
         {form.formState.errors.specializedIn && (
-          <FormErrorMessage id="specialized-error">
+          <FormErrorMessage>
             {form.formState.errors.specializedIn.message}
           </FormErrorMessage>
         )}
@@ -212,14 +204,13 @@ export const AuthorForm = ({
         <Input
           type="url"
           id="socialLink"
-          aria-describedby="social-error"
           {...form.register('socialLink')}
           className={twMerge(
             clsx(form.formState.errors.socialLink && 'inputError'),
           )}
         />
         {form.formState.errors.socialLink && (
-          <FormErrorMessage id="social-error">
+          <FormErrorMessage>
             {form.formState.errors.socialLink.message}
           </FormErrorMessage>
         )}
@@ -230,13 +221,12 @@ export const AuthorForm = ({
         <ImageInput
           id="imageAsset"
           onChange={handleImage}
-          aria-describedby="assetId-error"
           className={twMerge(
             clsx(form.formState.errors.imageAssetId && 'inputError'),
           )}
         />
         {form.formState.errors.imageAssetId && (
-          <FormErrorMessage id="assetId-error">
+          <FormErrorMessage>
             {form.formState.errors.imageAssetId.message}
           </FormErrorMessage>
         )}
@@ -244,10 +234,7 @@ export const AuthorForm = ({
 
       <div className="space-y-1">
         <FormLabel htmlFor="imageAlt">Image Alt Text</FormLabel>
-        <LabelInfoText
-          id="image-alt-helper"
-          text="Image Alternatie text is required for screen reader"
-        />
+        <LabelInfoText text="Image Alternatie text is required for screen reader" />
         <Input
           type="text"
           id="imageAlt"
@@ -257,10 +244,9 @@ export const AuthorForm = ({
           {...form.register('imageAlt')}
           required
           aria-required
-          aria-describedby="image-alt-helper image-alt-error"
         />
         {form.formState.errors.imageAlt && (
-          <FormErrorMessage id="image-alt-error">
+          <FormErrorMessage>
             {form.formState.errors.imageAlt.message}
           </FormErrorMessage>
         )}
