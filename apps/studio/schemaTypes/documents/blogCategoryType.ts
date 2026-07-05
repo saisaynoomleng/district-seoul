@@ -8,18 +8,24 @@ export const blogCategoryType = defineType({
   icon: TbCategoryFilled,
   type: 'document',
   fields: [
-    defineField({
-      name: 'name',
-      title: 'Blog Category Name',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
+    defineField(
+      {
+        name: 'name',
+        title: 'Blog Category Name',
+        type: 'localeString',
+        validation: (rule) => rule.required(),
+      },
+      {aliasFor: 'object'},
+    ),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'name',
+        source: (doc) => {
+          const name = doc.name as {en?: string}
+          return name.en ?? ''
+        },
       },
       validation: (rule) => rule.required(),
     }),

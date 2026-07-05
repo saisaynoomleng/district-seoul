@@ -71,12 +71,11 @@ export const MilestoneForm = ({
         <Input
           type="text"
           id="nameEn"
-          aria-describedby="nameEn-error"
           className={form.formState.errors.nameEn && 'inputError'}
           {...form.register('nameEn')}
         />
         {form.formState.errors.nameEn && (
-          <FormErrorMessage id="nameEn-error">
+          <FormErrorMessage>
             {form.formState.errors.nameEn.message}
           </FormErrorMessage>
         )}
@@ -87,12 +86,11 @@ export const MilestoneForm = ({
         <Input
           type="text"
           id="nameKo"
-          aria-describedby="nameKo-error"
           className={form.formState.errors.nameKo && 'inputError'}
           {...form.register('nameKo')}
         />
         {form.formState.errors.nameKo && (
-          <FormErrorMessage id="nameKo-error">
+          <FormErrorMessage>
             {form.formState.errors.nameKo.message}
           </FormErrorMessage>
         )}
@@ -100,16 +98,12 @@ export const MilestoneForm = ({
 
       <div className="space-y-2">
         <FormLabel htmlFor="slug">Slug</FormLabel>
-        <LabelInfoText
-          id="slug-help"
-          text="Slug is required to generate a page on the website"
-        />
+        <LabelInfoText text="Slug is required to generate a page on the website" />
         <div className="flex gap-x-2 w-full">
           <Input
             type="text"
             id="slug"
             className={clsx(form.formState.errors.slug && 'inputError')}
-            aria-describedby="slug-help slug-error"
             {...form.register('slug')}
           />
           <Button type="button" onClick={generateSlug}>
@@ -117,7 +111,7 @@ export const MilestoneForm = ({
           </Button>
         </div>
         {form.formState.errors.slug && (
-          <FormErrorMessage id="slug-error">
+          <FormErrorMessage>
             {form.formState.errors.slug.message}
           </FormErrorMessage>
         )}
@@ -127,13 +121,12 @@ export const MilestoneForm = ({
         <FormLabel htmlFor="year">Year</FormLabel>
         <Input
           type="number"
-          aria-describedby="year-error"
           id="year"
           className={clsx(form.formState.errors.year && 'inputError')}
           {...form.register('year')}
         />
         {form.formState.errors.year && (
-          <FormErrorMessage id="year-error">
+          <FormErrorMessage>
             {form.formState.errors.year.message}
           </FormErrorMessage>
         )}
@@ -144,12 +137,11 @@ export const MilestoneForm = ({
         <TextareaWithCount
           id="bodyEn"
           maxLength={10000}
-          aria-describedby="bodyEn-error"
           className={clsx(form.formState.errors.bodyEn && 'inputError')}
           {...form.register('bodyEn')}
         />
         {form.formState.errors.bodyEn && (
-          <FormErrorMessage id="bodyEn-error">
+          <FormErrorMessage>
             {form.formState.errors.bodyEn.message}
           </FormErrorMessage>
         )}
@@ -160,12 +152,11 @@ export const MilestoneForm = ({
         <TextareaWithCount
           id="bodyKo"
           maxLength={10000}
-          aria-describedby="bodyKo-error"
           className={clsx(form.formState.errors.bodyKo && 'inputError')}
           {...form.register('bodyKo')}
         />
         {form.formState.errors.bodyKo && (
-          <FormErrorMessage id="bodyKo-error">
+          <FormErrorMessage>
             {form.formState.errors.bodyKo.message}
           </FormErrorMessage>
         )}

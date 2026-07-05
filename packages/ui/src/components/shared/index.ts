@@ -8,3 +8,4 @@ export * from './SubmitButton';
 export * from './TextareaWithCount';
 export * from './YouTubeEmbedded';
 export * from './LabelInfoText';
+export * from './PortableTextEditor';

@@ -183,6 +183,15 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.4.0
         version: 5.4.0(react-hook-form@7.80.0(react@19.2.7))
+      '@portabletext/editor':
+        specifier: ^7.9.0
+        version: 7.9.0(@types/react@19.2.17)(react@19.2.7)
+      '@portabletext/keyboard-shortcuts':
+        specifier: ^2.1.3
+        version: 2.1.3
+      '@portabletext/toolbar':
+        specifier: ^8.0.26
+        version: 8.0.26(@portabletext/editor@7.9.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)
       '@tailwindcss/vite':
         specifier: ^4.3.2
         version: 4.3.2(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.22.4)(yaml@2.9.0))
@@ -2613,6 +2622,13 @@ packages:
   '@portabletext/to-html@5.0.2':
     resolution: {integrity: sha512-w59PcErj5JXUCv9tbV2npqJmcnORTAftCMLp0vc9FnWrXL3C9qYvuB2MQbdHsZEOesF3VmwqUsYUgjm7PX4JTw==}
     engines: {node: '>=20.19 <22 || >=22.12'}
+
+  '@portabletext/toolbar@8.0.26':
+    resolution: {integrity: sha512-PKOshiFehPlwzpDUN/cJwsK5DbZp46V0+xv/lxkB0EKvFuP9OTWFTnkf/SYqYldGBKzdb0nra4GCTFTqvauftw==}
+    engines: {node: '>=20.19 <22 || >=22.12'}
+    peerDependencies:
+      '@portabletext/editor': ^7.9.0
+      react: ^19.2.7
 
   '@portabletext/toolkit@5.0.2':
     resolution: {integrity: sha512-Njc1LE1PMJkTx/wEPqZ6sOWGgFgX2B47fxpOQ/Ia4ByhsZoA5Sq8dNvvV5F052j/xE8TbOLiBEjS848FkKADDQ==}
@@ -11349,6 +11365,16 @@ snapshots:
     dependencies:
       '@portabletext/toolkit': 5.0.2
       '@portabletext/types': 4.0.2
+
+  '@portabletext/toolbar@8.0.26(@portabletext/editor@7.9.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)':
+    dependencies:
+      '@portabletext/editor': 7.9.0(@types/react@19.2.17)(react@19.2.7)
+      '@portabletext/keyboard-shortcuts': 2.1.3
+      '@xstate/react': 6.1.0(@types/react@19.2.17)(react@19.2.7)(xstate@5.32.2)
+      react: 19.2.7
+      xstate: 5.32.2
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@portabletext/toolkit@5.0.2':
     dependencies:
