@@ -4,3 +4,4 @@ export * from './table';
 export * from './input';
 export * from './textarea';
 export * from './sonner';
+export * from './checkbox';

@@ -101,3 +101,61 @@ export const BlogCategoryFormSchema = z.object({
  * Validate Blog Category Form Values
  */
 export type BlogCategoryFormValues = z.input<typeof BlogCategoryFormSchema>;
+
+/**
+ * Validate Store Form Schema
+ */
+export const StoreFormSchema = z.object({
+  nameEn: z
+    .string()
+    .min(1, 'Store name in english must have at least 1 character'),
+  nameKo: z
+    .string()
+    .min(1, 'Store name in korean must have at least 1 character'),
+  slug: z.string().min(1, 'Slug must have at least 1 character'),
+  storeHours: z
+    .array(
+      z.object({
+        day: z.coerce
+          .number()
+          .min(0, 'Day starts at 0 -> Sunday')
+          .max(6, 'Day ends at 6 -> Saturday'),
+        openingHours: z.string().min(1, 'Invalid Opening Hours Type'),
+        closingHours: z.string().min(1, 'Invalid Closing Hours Type'),
+      }),
+    )
+    .length(7, 'Store Hours must contain all 7 days'),
+  isOpened: z.boolean(),
+  reasonForClosingEn: z
+    .string()
+    .max(
+      2000,
+      'Reason for closing text(English) cannot exceeds 2000 characters',
+    ),
+  reasonForClosingKo: z
+    .string()
+    .max(
+      2000,
+      'Reason for closing text(Korean) cannot exceeds 2000 characters',
+    ),
+  imageAssetId: z
+    .string()
+    .min(1, 'Image asset ID must have at least 1 character'),
+  imageAlt: z
+    .string()
+    .min(1, 'Image alternative text must have at least 1 character'),
+  email: z.email('Must be a valid email address'),
+  phone: z.string().min(1, 'Phone number must have at least 1 character'),
+  street: z.string().min(1, 'Street Address must have at least 1 character'),
+  city: z.string().min(1, 'City Address must have at least 1 character'),
+  zip: z.string().min(1, 'Zip/Postal Code must have at least 1 character'),
+  state: z.string().min(1, 'State Address must have at least 1 character'),
+  country: z.string().min(1, 'Country Name must have at least 1 character'),
+  latitude: z.coerce.number(),
+  longitude: z.coerce.number(),
+});
+/**
+ * Validate Store Form values
+ */
+export type StoreFormInputValues = z.input<typeof StoreFormSchema>;
+export type StoreFormOutputValues = z.output<typeof StoreFormSchema>;
