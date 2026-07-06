@@ -5,12 +5,12 @@ import { twMerge } from 'tailwind-merge';
 
 type LabelInfoTextProps = {
   className?: string;
-  text: string;
+  text?: string;
 };
 
 export const LabelInfoText = ({
   className,
-  text,
+  text = 'Slug is required to generate a page on the website',
 }: LabelInfoTextProps): React.JSX.Element => {
   return (
     <p
