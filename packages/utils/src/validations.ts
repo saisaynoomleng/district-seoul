@@ -155,7 +155,41 @@ export const StoreFormSchema = z.object({
   longitude: z.coerce.number(),
 });
 /**
- * Validate Store Form values
+ * Validate Store Form Input Values
  */
 export type StoreFormInputValues = z.input<typeof StoreFormSchema>;
+/**
+ * Validate Store Form Output Values
+ */
 export type StoreFormOutputValues = z.output<typeof StoreFormSchema>;
+
+/**
+ * Validate Product Category Form Schema
+ */
+export const ProductCategoryFormSchema = z.object({
+  nameEn: z
+    .string()
+    .min(1, 'Category name in english must have at least 1 character'),
+  nameKo: z
+    .string()
+    .min(1, 'Category name in korean must have at least 1 character'),
+  slug: z.string().min(1, 'Slug must have at least 1 character'),
+  imageAssetId: z
+    .string()
+    .min(1, 'Image asset id must have at least 1 character'),
+  imageAlt: z
+    .string()
+    .min(1, 'Image alternative text must have at least 1 character'),
+});
+/**
+ * Validate Product Category Input Values
+ */
+export type ProductCategoryFormInputValues = z.input<
+  typeof ProductCategoryFormSchema
+>;
+/**
+ * Validate Product Category Ouput Values
+ */
+export type ProductCategoryFormOutputValues = z.output<
+  typeof ProductCategoryFormSchema
+>;

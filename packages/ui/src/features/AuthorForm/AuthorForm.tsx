@@ -114,7 +114,7 @@ export const AuthorForm = ({
           type="text"
           id="name"
           {...form.register('name')}
-          className={twMerge(clsx(form.formState.errors.name && 'inputError'))}
+          className={twMerge(clsx(form.formState.errors.name && 'inputError!'))}
         />
         {form.formState.errors.name && (
           <FormErrorMessage>
@@ -132,7 +132,7 @@ export const AuthorForm = ({
               type="text"
               id="slug"
               className={twMerge(
-                clsx(form.formState.errors.slug && 'inputError'),
+                clsx(form.formState.errors.slug && 'inputError!'),
               )}
               required
               aria-required
@@ -160,7 +160,9 @@ export const AuthorForm = ({
           id="bioEn"
           maxLength={10000}
           {...form.register('bioEn')}
-          className={twMerge(clsx(form.formState.errors.bioEn && 'inputError'))}
+          className={twMerge(
+            clsx(form.formState.errors.bioEn && 'inputError!'),
+          )}
         />
         {form.formState.errors.bioEn && (
           <FormErrorMessage>
@@ -175,7 +177,9 @@ export const AuthorForm = ({
           id="bioKo"
           maxLength={10000}
           {...form.register('bioKo')}
-          className={twMerge(clsx(form.formState.errors.bioKo && 'inputError'))}
+          className={twMerge(
+            clsx(form.formState.errors.bioKo && 'inputError!'),
+          )}
         />
         {form.formState.errors.bioKo && (
           <FormErrorMessage>
@@ -190,7 +194,7 @@ export const AuthorForm = ({
           type="text"
           id="specializedIn"
           {...form.register('specializedIn')}
-          className={form.formState.errors.specializedIn && 'inputError'}
+          className={form.formState.errors.specializedIn && 'inputError!'}
         />
         {form.formState.errors.specializedIn && (
           <FormErrorMessage>
@@ -206,7 +210,7 @@ export const AuthorForm = ({
           id="socialLink"
           {...form.register('socialLink')}
           className={twMerge(
-            clsx(form.formState.errors.socialLink && 'inputError'),
+            clsx(form.formState.errors.socialLink && 'inputError!'),
           )}
         />
         {form.formState.errors.socialLink && (
@@ -222,7 +226,7 @@ export const AuthorForm = ({
           id="imageAsset"
           onChange={handleImage}
           className={twMerge(
-            clsx(form.formState.errors.imageAssetId && 'inputError'),
+            clsx(form.formState.errors.imageAssetId && 'inputError!'),
           )}
         />
         {form.formState.errors.imageAssetId && (
@@ -239,7 +243,7 @@ export const AuthorForm = ({
           type="text"
           id="imageAlt"
           className={twMerge(
-            clsx(form.formState.errors.imageAlt && 'inputError'),
+            clsx(form.formState.errors.imageAlt && 'inputError!'),
           )}
           {...form.register('imageAlt')}
           required
