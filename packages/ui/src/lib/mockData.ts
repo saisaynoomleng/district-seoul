@@ -49,3 +49,44 @@ export const mockBlogCategory = {
   nameKo: 'Fashion in Korean',
   slug: 'fashion-in-english',
 };
+
+export const mockStore = {
+  city: 'City',
+  country: 'Country',
+  email: 'store@mail.com',
+  imageAlt: 'image alt text',
+  imageAssetId: 'image file',
+  isOpened: true,
+  latitude: 100,
+  longitude: 0,
+  nameEn: 'store in english',
+  nameKo: 'store in korean',
+  phone: '1 234 567 8901',
+  reasonForClosingEn: 'Reason in English',
+  reasonForClosingKo: 'Reason in Korean',
+  slug: 'store-in-english',
+  state: 'State',
+  storeHours: [
+    {
+      closingHours: '17:30',
+      day: 0,
+      openingHours: '08:00',
+    },
+    {
+      closingHours: '17:30',
+      day: 1,
+      openingHours: '08:00',
+    },
+    {
+      closingHours: '17:30',
+      day: 2,
+      openingHours: '08:00',
+    },
+    { closingHours: '17:30', day: 3, openingHours: '08:00' },
+    { closingHours: '17:30', day: 4, openingHours: '08:00' },
+    { closingHours: '17:30', day: 5, openingHours: '08:00' },
+    { closingHours: '17:30', day: 6, openingHours: '08:00' },
+  ],
+  street: 'Street',
+  zip: '100000',
+};
