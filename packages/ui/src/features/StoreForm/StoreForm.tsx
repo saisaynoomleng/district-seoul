@@ -19,6 +19,7 @@ import {
   LabelInfoText,
   SectionTitle,
   Separator,
+  SubmitButton,
   TextareaWithCount,
 } from '../../components';
 import clsx from 'clsx';
@@ -190,12 +191,28 @@ export const StoreForm = ({
               })}
             />
 
+            <FormLabel
+              htmlFor={`storeHours.${index}.openingHours`}
+              className="sr-only"
+            >
+              Store {index} Opening Hours
+            </FormLabel>
             <Input
+              id={`storeHours.${index}.openingHours`}
               type="time"
+              data-testid={`storeHours.${index}.openingHours`}
               {...register(`storeHours.${index}.openingHours`)}
             />
 
+            <FormLabel
+              htmlFor={`storeHours.${index}.closingHours`}
+              className="sr-only"
+            >
+              Store {index} Closing Hours
+            </FormLabel>
             <Input
+              id={`storeHours.${index}.closingHours`}
+              data-testid={`storeHours.${index}.closingHours`}
               type="time"
               {...register(`storeHours.${index}.closingHours`)}
             />
@@ -395,7 +412,7 @@ export const StoreForm = ({
         <FormLabel htmlFor="longitude">Longitude</FormLabel>
         <Input
           type="number"
-          id="longitde"
+          id="longitude"
           className={errors.longitude && 'inputError!'}
           {...register('longitude')}
         />
@@ -403,6 +420,8 @@ export const StoreForm = ({
           <FormErrorMessage>{errors.longitude.message}</FormErrorMessage>
         )}
       </div>
+
+      <SubmitButton className="self-start">Create</SubmitButton>
     </Bounded>
   );
 };
