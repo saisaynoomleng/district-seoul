@@ -4,3 +4,4 @@ export * from './AuthorForm';
 export * from './MilestoneForm';
 export * from './BlogCategoryForm';
 export * from './StoreForm';
+export * from './ProductCategoryForm';

@@ -90,3 +90,11 @@ export const mockStore = {
   street: 'Street',
   zip: '100000',
 };
+
+export const mockProductCategory = {
+  imageAlt: 'Image Alt Text',
+  imageAssetId: 'image file',
+  nameEn: 'Name in english',
+  nameKo: 'Name in Korean',
+  slug: 'name-in-english',
+};
