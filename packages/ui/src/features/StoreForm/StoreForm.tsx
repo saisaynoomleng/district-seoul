@@ -421,7 +421,7 @@ export const StoreForm = ({
         )}
       </div>
 
-      <SubmitButton className="self-start">Create</SubmitButton>
+      <SubmitButton className="self-start">{submitLabel}</SubmitButton>
     </Bounded>
   );
 };
